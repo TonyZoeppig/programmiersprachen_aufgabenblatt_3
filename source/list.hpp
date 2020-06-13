@@ -292,8 +292,25 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
-
       // TODO: remainder of pop_back-method (Aufgabe 3.3)
+      else {
+          if (first_ == last_) {
+              assert(nullptr != first_);
+              delete first_;
+              first_ = nullptr;
+              last_ = nullptr;
+          }
+          else {
+              ListNode<T>* new_last = new ListNode<T>();
+              new_last = last_->prev;
+              new_last->next = nullptr;
+
+              assert(nullptr != last_);
+              delete(last_);
+              last_ = new_last;
+          }
+      }
+      --size_;
     }
 
     /* ... */
