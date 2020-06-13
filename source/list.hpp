@@ -173,6 +173,7 @@ class List {
     /* ... */
     ~List() {
       //TODO: Implement via clear-Method (Aufgabe 3.4)
+        clear();
     } //can not really be tested
 
     /* ... */
@@ -192,6 +193,11 @@ class List {
     /* ... */ 
     // test and implement:
     //TODO: clear()-Method (Aufgabe 3.4)
+    void clear() {
+        while (size_ > 0) {
+            pop_back();
+        }
+    }
 
 
     /* ... */
@@ -349,18 +355,6 @@ class List {
     /* ... */
     std::size_t size() const{
         // TODO: size-method (Aufgabe 3.2)
-        /*if (empty() == true) {
-            return 0;
-        }
-        
-        std::size_t count = 1;
-        ListNode<T>* element = first_;
-
-        while (element->next != nullptr) {
-            element = element->next;
-            ++count;
-        }*/
-
         return size_;
   };
 
