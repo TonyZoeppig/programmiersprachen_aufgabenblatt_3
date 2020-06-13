@@ -236,6 +236,29 @@ class List {
     /* ... */
     void push_back(T const& element) {
       // TODO: push_back-method (Aufgabe 3.3)
+        ListNode<T>* node = new ListNode<T>();
+        node->value = element;
+        node->next = nullptr;
+
+        if (empty()) {
+            node->prev = nullptr;
+            first_ = node;
+            last_ = node;
+        }
+        else {
+            if (first_ == last_) {
+                node->prev = first_;
+                last_ = node;
+                first_->next = last_;
+            }
+            else {
+                node->prev = last_;
+                last_->next = node;
+                last_ = node;
+            }
+        }
+
+        ++size_;
     }
 
     /* ... */
