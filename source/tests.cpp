@@ -26,7 +26,7 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 #include "sub_tests/pop_front.test"
 #include "sub_tests/pop_back.test"
 
-//test case definitions for
+//test case definition for clear
 TEST_CASE("list clear()", "list") {
     List<int> int_list{};
     for (int i = 0; i <= 10; ++i) {
@@ -43,6 +43,30 @@ TEST_CASE("list clear()", "list") {
     char_list.push_back('a');
     char_list.clear();
     REQUIRE(char_list.size() == 0);
+}
+
+//test case definition for copy constructor
+TEST_CASE("List(List<T> const& list)", "list") {
+    List<int> int1{};
+    for (int i = 0; i <= 42; ++i) {
+        int1.push_front(i);
+    }
+    List<int> int2(int1);
+    REQUIRE(int1.front() == int2.front());
+    REQUIRE(int1.back() == int2.back());
+    REQUIRE(int1.size() == int2.size());
+
+    List<int> int3{};
+    List<int> int4(int3);
+    REQUIRE(int3.size() == 0);
+    REQUIRE(int4.size() == 0);
+
+    List<char> char1{};
+    char1.push_front('v');
+    List<char> char2(char1);
+    REQUIRE(char1.front() == char2.front());
+    REQUIRE(char1.back() == char2.back());
+    REQUIRE(char1.size() == char2.size());
 }
 
 //test cases for element access of list

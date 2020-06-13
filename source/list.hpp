@@ -129,15 +129,25 @@ class List {
     // not fully implemented yet
     // TODO: do not forget about the initialiser list! (Aufgabe 3.2)
     /* ... */
-    List(){
-        size_ = 0;
-        first_ = nullptr;
-        last_ = nullptr;
-    }
+    List():
+        size_{ 0 },
+        first_{nullptr},
+        last_{nullptr} {}
 
 
     // test and implement:
     //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
+    List(List<T> const& list):
+        size_{ 0 },
+        first_{ nullptr },
+        last_{ nullptr } {
+            ListNode<T>* element = list.first_;
+
+            while (nullptr != element) {
+                push_back(element->value);
+                element = element->next;
+            }
+        }
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.9)
