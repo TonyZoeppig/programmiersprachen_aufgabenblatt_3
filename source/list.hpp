@@ -202,8 +202,12 @@ class List {
 
     bool operator!=(List const& rhs)
     {
-      //TODO: operator!= (Aufgabe 3.8)
-      // make use of operator==
+        if (*this == rhs) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     /* ... */
