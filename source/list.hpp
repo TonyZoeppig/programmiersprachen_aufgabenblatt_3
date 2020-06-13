@@ -266,8 +266,25 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
-
       // TODO: remainder of pop_front-method (Aufgabe 3.3)
+      else {
+          if (first_ == last_) {
+              assert(nullptr != first_);
+              delete first_;
+              first_ = nullptr;
+              last_ = nullptr;
+          }
+          else {
+              ListNode<T>* new_first = new ListNode<T>();
+              new_first = first_->next;
+              new_first->prev = nullptr;
+
+              assert(nullptr != first_);
+              delete(first_);
+              first_ = new_first;
+          }
+      }
+      --size_;
     }
 
     /* ... */
