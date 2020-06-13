@@ -69,6 +69,33 @@ TEST_CASE("List(List<T> const& list)", "list") {
     REQUIRE(char1.size() == char2.size());
 }
 
+//test case definition for unifying assignment operator
+TEST_CASE("operator =", "list") {
+    List<int> int1{};
+    for (int i = 0; i <= 42; ++i) {
+        int1.push_front(i);
+    }
+    int first_element = int1.front();
+    int last_element = int1.back();
+    int list_size = int1.size();
+
+    List<int> int2 = int1;
+    REQUIRE(int2.front() == first_element);
+    REQUIRE(int2.back() == last_element);
+    REQUIRE(int2.size() == list_size);
+
+    List<int> int3{};
+    List<int> int4 = int3;
+    REQUIRE(int3.size() == 0);
+    REQUIRE(int4.size() == 0);
+
+    List<char> char1{};
+    char1.push_front('v');
+    List<char> char2 = char1;
+    REQUIRE(char2.front() == 'v');
+    REQUIRE(char2.size() == 1);
+}
+
 //test cases for element access of list
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"

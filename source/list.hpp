@@ -159,12 +159,18 @@ class List {
       //not implemented yet
     }
 
-    // test and implement:
-    //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
-
     /* ... */
     // test and implement:
     //TODO: (unifying) Assignment operator (Aufgabe 3.6)
+    void swap(List& rhs) {
+        std::swap(first_, rhs.first_);
+        std::swap(last_, rhs.last_);
+    }
+
+    List& operator=(List rhs) {
+        swap(rhs);
+        return *this;
+    }
 
     /* ... */
     // test and implement:
