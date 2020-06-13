@@ -96,7 +96,7 @@ TEST_CASE("operator =", "list") {
     REQUIRE(char2.size() == 1);
 }
 
-TEST_CASE("inner reverse function", "list") {
+TEST_CASE("member reverse function", "list") {
     List<int> int1{};
     for (int i = 0; i <= 30; ++i) {
         int1.push_front(i);
@@ -115,6 +115,27 @@ TEST_CASE("inner reverse function", "list") {
     char1.push_front('z');
     char1.reverse();
     REQUIRE(char1.back() == 'z');
+}
+
+TEST_CASE("free reverse function", "list") {
+    List<int> int1{};
+    for (int i = 0; i <= 30; ++i) {
+        int1.push_front(i);
+    }
+    int first_element = int1.front();
+    int last_element = int1.back();
+    List<int> int2 = reverse(int1);
+    REQUIRE(int2.front() == last_element);
+    REQUIRE(int2.back() == first_element);
+
+    List<double> double1{};
+    List<double> double2 = reverse(double1);
+    REQUIRE(double2.size() == 0);
+
+    List<char> char1{};
+    char1.push_front('z');
+    List<char> char2 = reverse(char1);
+    REQUIRE(char2.back() == 'z');
 }
 
 //test cases for element access of list
