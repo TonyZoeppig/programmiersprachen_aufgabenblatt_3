@@ -225,6 +225,20 @@ class List {
     /* ... */
 
     //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
+    void reverse() {
+        if (empty()) {
+            return;
+        }
+        else {
+            ListNode<T>* current_element = first_;
+            std::swap(first_, last_);
+
+            while (nullptr != current_element) {
+                std::swap(current_element->next, current_element->prev);
+                current_element = current_element->prev;
+            }
+        }
+    }
 
 
     /* ... */

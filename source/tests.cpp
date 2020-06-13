@@ -96,6 +96,27 @@ TEST_CASE("operator =", "list") {
     REQUIRE(char2.size() == 1);
 }
 
+TEST_CASE("inner reverse function", "list") {
+    List<int> int1{};
+    for (int i = 0; i <= 30; ++i) {
+        int1.push_front(i);
+    }
+    int first_element = int1.front();
+    int last_element = int1.back();
+    int1.reverse();
+    REQUIRE(int1.front() == last_element);
+    REQUIRE(int1.back() == first_element);
+
+    List<double> double1{};
+    double1.reverse();
+    REQUIRE(double1.size() == 0);
+
+    List<char> char1{};
+    char1.push_front('z');
+    char1.reverse();
+    REQUIRE(char1.back() == 'z');
+}
+
 //test cases for element access of list
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"
