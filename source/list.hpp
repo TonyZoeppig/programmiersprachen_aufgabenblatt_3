@@ -129,7 +129,12 @@ class List {
     // not fully implemented yet
     // TODO: do not forget about the initialiser list! (Aufgabe 3.2)
     /* ... */
-    List() {}
+    List(){
+        size_ = 0;
+        first_ = nullptr;
+        last_ = nullptr;
+    }
+
 
     // test and implement:
     //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
@@ -203,6 +208,31 @@ class List {
     /* ... */
     void push_front(T const& element) {
       // TODO: push_front-method (Aufgabe 3.3)
+        ListNode<T>* node = new ListNode<T>();
+        node->value = element;
+
+        if (empty()) {
+            first_ = node;
+            last_ = node;
+            node->prev = nullptr;
+            node->next = nullptr;
+        }
+        else {
+            if (first_->next == nullptr) {
+                last_->prev = first_;
+                node->next = last_;
+                node->prev = nullptr;
+                first_ = node;
+            }
+            else {
+                node->next = first_;
+                first_->prev = node;
+                node->prev = nullptr;
+                first_ = node;
+            }
+        }
+        
+
     }
 
     /* ... */
@@ -250,14 +280,29 @@ class List {
     bool empty() const {
 
       // TODO: empty-method (Aufgabe 3.2)
-      return false;
+        if (first_ == nullptr && last_ == nullptr) {
+            return true;
+        }
+        return false;
     };
 
 
     /* ... */
     std::size_t size() const{
-      // TODO: size-method (Aufgabe 3.2)      
-      return 27;
+        // TODO: size-method (Aufgabe 3.2)
+        if (empty() == true) {
+            return 0;
+        }
+        
+        std::size_t count = 1;
+        ListNode<T>* element = first_;
+
+        while (element->next != nullptr) {
+            element = element->next;
+            ++count;
+        }
+
+        return count;
   };
 
 
