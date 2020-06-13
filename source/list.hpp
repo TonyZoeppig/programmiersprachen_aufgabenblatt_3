@@ -318,7 +318,9 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
-
+      else {
+          return first_->value;
+      }
       // TODO: remainder of front-method (Aufgabe 3.3)
     }
 
