@@ -210,29 +210,27 @@ class List {
       // TODO: push_front-method (Aufgabe 3.3)
         ListNode<T>* node = new ListNode<T>();
         node->value = element;
+        node->prev = nullptr;
 
         if (empty()) {
+            node->next = nullptr;
             first_ = node;
             last_ = node;
-            node->prev = nullptr;
-            node->next = nullptr;
         }
         else {
-            if (first_->next == nullptr) {
-                last_->prev = first_;
+            if (first_ == last_) {
                 node->next = last_;
-                node->prev = nullptr;
                 first_ = node;
+                last_->prev = first_;
             }
             else {
                 node->next = first_;
                 first_->prev = node;
-                node->prev = nullptr;
                 first_ = node;
             }
         }
         
-
+        ++size_;
     }
 
     /* ... */
@@ -290,7 +288,7 @@ class List {
     /* ... */
     std::size_t size() const{
         // TODO: size-method (Aufgabe 3.2)
-        if (empty() == true) {
+        /*if (empty() == true) {
             return 0;
         }
         
@@ -300,9 +298,9 @@ class List {
         while (element->next != nullptr) {
             element = element->next;
             ++count;
-        }
+        }*/
 
-        return count;
+        return size_;
   };
 
 
