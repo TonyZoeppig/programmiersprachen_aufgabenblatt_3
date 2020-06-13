@@ -96,6 +96,7 @@ TEST_CASE("operator =", "list") {
     REQUIRE(char2.size() == 1);
 }
 
+//test case definition for member reverse function
 TEST_CASE("member reverse function", "list") {
     List<int> int1{};
     for (int i = 0; i <= 30; ++i) {
@@ -117,6 +118,7 @@ TEST_CASE("member reverse function", "list") {
     REQUIRE(char1.back() == 'z');
 }
 
+//test case definition for free reverse function
 TEST_CASE("free reverse function", "list") {
     List<int> int1{};
     for (int i = 0; i <= 30; ++i) {
@@ -136,6 +138,29 @@ TEST_CASE("free reverse function", "list") {
     char1.push_front('z');
     List<char> char2 = reverse(char1);
     REQUIRE(char2.back() == 'z');
+}
+
+//test case definition for unifying assignment operator
+TEST_CASE("operator ==", "list") {
+    List<int> int1{};
+    List<int> int2{};
+    REQUIRE(int1 == int2);
+
+    List<int> int3{};
+    for (int i = 0; i <= 30; ++i) {
+        int3.push_front(i);
+    }
+    List<int> int4{};
+    int4.push_front(2);
+    REQUIRE(!(int3 == int4));
+
+    List<char> char1{};
+    char1.push_front('1');
+    char1.push_front('A');
+    List<char> char2{};
+    char2.push_front('1');
+    char2.push_front('A');
+    REQUIRE(char1 == char2);
 }
 
 //test cases for element access of list

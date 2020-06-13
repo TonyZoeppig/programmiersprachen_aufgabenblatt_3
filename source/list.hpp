@@ -177,7 +177,27 @@ class List {
 
     bool operator==(List const& rhs)
     {
-      //TODO: operator== (Aufgabe 3.8)
+        if (empty() && rhs.empty()) {
+            return true;
+        }
+        else {
+            if (size_ != rhs.size_) {
+                return false;
+            }
+            else {
+                ListNode<T>* lhs_element = first_;
+                ListNode<T>* rhs_element = rhs.first_;
+
+                while (lhs_element != nullptr) {
+                    if (lhs_element->value != rhs_element->value) {
+                        return false;
+                    }
+                    lhs_element = lhs_element->next;
+                    rhs_element = rhs_element->next;
+                }
+                return true;
+            }
+        }
     }
 
     bool operator!=(List const& rhs)
