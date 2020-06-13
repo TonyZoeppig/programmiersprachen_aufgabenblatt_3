@@ -318,10 +318,10 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
+      // TODO: remainder of front-method (Aufgabe 3.3)
       else {
           return first_->value;
       }
-      // TODO: remainder of front-method (Aufgabe 3.3)
     }
 
     /* ... */
@@ -329,8 +329,10 @@ class List {
       if(empty()) {
         throw "List is empty";
       }
-
       // TODO: remainder of back-method (Aufgabe 3.3)
+      else {
+          return last_->value;
+      }
     }
 
     /* ... */
