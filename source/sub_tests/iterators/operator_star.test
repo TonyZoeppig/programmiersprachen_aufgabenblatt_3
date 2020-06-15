@@ -46,20 +46,20 @@ TEST_CASE("dereferencing an iterator using the arrow iterator should return the 
   list.push_front({std::numeric_limits<float>::max(), 
                    std::numeric_limits<float>::min()});
   SECTION("pushed element should be readable and writeable and should not change size of list") {
-
+    std::cout << "3";
     float const float_max = std::numeric_limits<float>::max();
     float const float_min = std::numeric_limits<float>::min();
     REQUIRE(float_max == list.front().x);
     REQUIRE(float_min == list.front().y);
     REQUIRE(2 == list.size());
     REQUIRE(false == list.empty());
-
+    std::cout << "4";
     auto begin_it = list.begin();
     REQUIRE(begin_it->x == list.front().x );
     REQUIRE(begin_it->y == list.front().y );
     REQUIRE(2 == list.size());
     REQUIRE(false == list.empty());
-
+    std::cout << "5";
     begin_it->x = 0.0f;
 
     begin_it = list.begin();

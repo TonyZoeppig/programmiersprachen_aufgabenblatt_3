@@ -30,7 +30,7 @@ struct ListIterator {
   using iterator_category = std::bidirectional_iterator_tag;
 
 
-  /* DESCRIPTION  operator*() */
+  /* dereferenciation of iterator to acces values */
   T&  operator*()  const {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
@@ -38,10 +38,12 @@ struct ListIterator {
 
     //TODO: remaining implementation of derefenciation of 
     //      iterator using operator* (Aufgabe 3.12 - Teil 1)
-
+    else {
+        return node->value;
+    }
   } //call *it
 
-  /* DESCRIPTION  operator->() */
+  /* dereferenciation of iterator to acces values */
   T* operator->() const {
     if(nullptr == node) {
       throw "Iterator does not point to valid node";
@@ -49,6 +51,9 @@ struct ListIterator {
 
     //TODO: remaining implementation of derefenciation of 
     //      iterator using operator-> (Aufgabe 3.12 - Teil 2)
+    else {
+        return &node->value;
+    }
   }  //call it->method() or it->member
 
 
@@ -60,6 +65,10 @@ struct ListIterator {
 
     //TODO: Implement Postincrement-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 3)
+    else {
+        node = node->next;
+        return *this;
+    }
     
   }
 
@@ -72,7 +81,12 @@ struct ListIterator {
 
     //TODO: Implement Postincrement-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 4)
+    else {
 
+        ListIterator<T> temp = *this;
+        ++(*this);
+        return temp;
+    }
   }
 
 
@@ -81,7 +95,7 @@ struct ListIterator {
     //TODO: Implement Equality-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 5)
     // Iterators should be the same if they refer to the same node
-    return false;
+    return node == x.node;
   } // call it: == it
 
   /* ... */
@@ -89,7 +103,7 @@ struct ListIterator {
     //TODO: Implement Inequality-Operation for Iterator  
     //      (Aufgabe 3.12 - Teil 6)
     // Reuse operator==
-    return false;
+    return !(node == x.node);
   } // call it: != it
 
   /* Advances Iterator */

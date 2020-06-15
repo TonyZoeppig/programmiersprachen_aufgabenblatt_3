@@ -25,26 +25,27 @@ TEST_CASE("the increment operators move the iterators in the list forward", "[it
 
     auto begin_it_1 = list.begin();
     auto end_it_1 = list.end();
-
+    
     REQUIRE(9 == begin_it_1.node->value);
     REQUIRE(end_it_1 != begin_it_1);
+    
     auto old_value_of_iterator = begin_it_1++;
     REQUIRE(9 == old_value_of_iterator.node->value);
-
+    
     REQUIRE(end_it_1 == begin_it_1);
     REQUIRE(end_it_1 != old_value_of_iterator);
-
+   
     auto begin_it_2 = list.begin();   
     REQUIRE(9 == begin_it_2.node->value);
     REQUIRE(end_it_1 == ++begin_it_2);
-
+ 
     auto begin_it_3 = list.begin();   
     REQUIRE(9 == begin_it_3.node->value);
 
     //after iterating once, we are with both iterators at the position of the end iterator
     REQUIRE_THROWS(++begin_it_1);
     REQUIRE_THROWS(begin_it_2++);
-
+    
     REQUIRE_THROWS(++end_it_1);
 
     auto end_it_2 = list.end();
