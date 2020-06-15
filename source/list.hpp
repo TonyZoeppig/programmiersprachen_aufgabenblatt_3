@@ -199,7 +199,7 @@ class List {
         }
     }
 
-    /* opposite action of == */
+    /* checks if list and rhs are unequal, means they have a different size, or at least one element value is unequal */
     bool operator!=(List const& rhs) const
     {
         if (*this == rhs) {
@@ -216,18 +216,22 @@ class List {
         clear();
     } //can not really be tested
 
-    /* ... */
+    /* returns iterator, that points on first element of list */
     ListIterator<T> begin() {
       //TODO: begin-Method returning an Iterator to the 
       //      first element in the List (Aufgabe 3.11)
-      return {};
+        ListIterator<T> it;
+        it.node = first_;
+        return it;
     }
 
-    /* ... */
+    /* returns iterator, that points on element after last element of list */
     ListIterator<T> end() {
       //TODO: end-Method returning an Iterator to element after (!) 
       //      the last element in the List (Aufgabe 3.11)
-      return {};
+        ListIterator<T> it;
+        it.node = nullptr;
+        return it;
     }
 
     /* method that removes all elements from list */ 
