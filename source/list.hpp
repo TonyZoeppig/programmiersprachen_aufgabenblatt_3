@@ -128,7 +128,7 @@ class List {
 
     // not fully implemented yet
     // TODO: do not forget about the initialiser list! (Aufgabe 3.2)
-    /* ... */
+    /* default constructor, that initializes an empty list */
     List():
         size_{ 0 },
         first_{nullptr},
@@ -172,10 +172,9 @@ class List {
         return *this;
     }
 
-    /* ... */
+    /* checks if list equals rhs, means the lists have the same size and the values are equal */
     // test and implement:
-
-    bool operator==(List const& rhs)
+    bool operator==(List const& rhs) const
     {
         if (empty() && rhs.empty()) {
             return true;
@@ -200,7 +199,8 @@ class List {
         }
     }
 
-    bool operator!=(List const& rhs)
+    /* opposite action of == */
+    bool operator!=(List const& rhs) const
     {
         if (*this == rhs) {
             return false;
@@ -210,7 +210,7 @@ class List {
         }
     }
 
-    /* ... */
+    /* destructor, that calls the clear function, so all elements are removed from freestore, before list is deleted */
     ~List() {
       //TODO: Implement via clear-Method (Aufgabe 3.4)
         clear();
@@ -230,7 +230,7 @@ class List {
       return {};
     }
 
-    /* ... */ 
+    /* method that removes all elements from list */ 
     // test and implement:
     //TODO: clear()-Method (Aufgabe 3.4)
     void clear() {
@@ -246,8 +246,7 @@ class List {
     /* ... */
     //TODO: member function insert (Aufgabe 3.14)
 
-    /* ... */
-
+    /* reverses the order of the elements in the list */
     //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
     void reverse() {
         if (empty()) {
@@ -265,7 +264,7 @@ class List {
     }
 
 
-    /* ... */
+    /* adds element at the front of the list */
     void push_front(T const& element) {
       // TODO: push_front-method (Aufgabe 3.3)
         ListNode<T>* node = new ListNode<T>();
@@ -293,7 +292,7 @@ class List {
         ++size_;
     }
 
-    /* ... */
+    /* adds element at the end of the list */
     void push_back(T const& element) {
       // TODO: push_back-method (Aufgabe 3.3)
         ListNode<T>* node = new ListNode<T>();
@@ -321,7 +320,7 @@ class List {
         ++size_;
     }
 
-    /* ... */
+    /* removes first element */
     void pop_front() {
       if(empty()) {
         throw "List is empty";
@@ -347,7 +346,7 @@ class List {
       --size_;
     }
 
-    /* ... */
+    /* removes last element */
     void pop_back() {
       if(empty()) {
         throw "List is empty";
@@ -373,7 +372,7 @@ class List {
       --size_;
     }
 
-    /* ... */
+    /* returns reference on value of first element */
     T& front() {
       if(empty()) {
         throw "List is empty";
@@ -384,7 +383,7 @@ class List {
       }
     }
 
-    /* ... */
+    /* returns reference on value of last element  */
     T& back() {
       if(empty()) {
         throw "List is empty";
@@ -395,7 +394,7 @@ class List {
       }
     }
 
-    /* ... */
+    /* checks if list is empty */
     bool empty() const {
 
       // TODO: empty-method (Aufgabe 3.2)
@@ -406,7 +405,7 @@ class List {
     };
 
 
-    /* ... */
+    /* returns size of list */
     std::size_t size() const{
         // TODO: size-method (Aufgabe 3.2)
         return size_;
@@ -420,7 +419,7 @@ class List {
     ListNode<T>* last_;
 };
 
-/* ... */
+/* reverses oreder of given list l */
 //TODO: Freie Funktion reverse 
 //(Aufgabe 3.7 - Teil 2, benutzt Member-Funktion reverse)
 template <typename T>
