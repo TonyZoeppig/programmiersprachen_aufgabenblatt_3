@@ -186,6 +186,33 @@ TEST_CASE("operator !=", "list") {
     REQUIRE(!(char1 != char2));
 }
 
+TEST_CASE("move constructor", "[constructor]")
+{ 
+    List<int> list;
+    list.push_front(1); 
+    list.push_front(2); 
+    list.push_front(3); 
+    list.push_front(4); 
+    List<int> list2 = std::move(list); 
+    REQUIRE(0 == list.size()); 
+    REQUIRE(list.empty()); 
+    REQUIRE(4 == list2.size()); 
+
+    List<char> char_list{};
+    List<char> char_list2 = std::move(char_list);
+    REQUIRE(char_list.size() == 0);
+    REQUIRE(char_list.empty());
+    REQUIRE(char_list2.size() == 0);
+    REQUIRE(char_list2.empty());
+    
+    List<float> float_list;
+    float_list.push_front(42.0f);  
+    List<float> float_list2 = std::move(float_list);
+    REQUIRE(float_list.size() == 0);
+    REQUIRE(float_list.empty());
+    REQUIRE(float_list2.size() == 1);
+}
+
 //test cases for element access of list
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"
