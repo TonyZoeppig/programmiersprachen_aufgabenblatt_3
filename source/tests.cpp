@@ -213,6 +213,32 @@ TEST_CASE("move constructor", "[constructor]")
     REQUIRE(float_list2.size() == 1);
 }
 
+TEST_CASE("insert function", "list") {
+    List<int> list;
+    for (int i = 0; i < 10; ++i) {
+        list.push_back(i);
+    }
+
+    ListIterator<int> it = list.begin();
+    for (int i = 0; i < 5; ++i) {
+        it.node = it.node->next;
+    }
+
+    ListIterator<int> inserted_element = list.insert(100, it);
+
+    ListIterator<int> prev_element = list.begin();
+
+    for (int i = 0; i < 4; i++) {
+        prev_element.node = prev_element.node->next;
+    }
+
+    REQUIRE(list.size() == 11);
+    REQUIRE(prev_element.node->next == inserted_element.node);
+    REQUIRE(inserted_element.node->prev == prev_element.node);
+    REQUIRE(inserted_element.node->next == it.node);
+    REQUIRE(it.node->prev == inserted_element.node);
+}
+
 //test cases for element access of list
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"

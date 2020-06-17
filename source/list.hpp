@@ -181,7 +181,7 @@ class List {
       //not implemented yet
     }
 
-    /* ... */
+    /* weiﬂt die Werte der rhs-Liste der Liste zu */
     // test and implement:
     //TODO: (unifying) Assignment operator (Aufgabe 3.6)
     void swap(List& rhs) {
@@ -268,6 +268,28 @@ class List {
 
     /* ... */
     //TODO: member function insert (Aufgabe 3.13)
+    ListIterator<T> insert(T t, ListIterator<T>& it) {
+        if (it.node == nullptr) {
+            throw "iterator does not point to valid node";
+        }
+        else if (it == begin()) {
+            push_front(t);
+            return begin();
+        }
+        else if (it == end()) {
+            push_back(t);
+            return end();
+        }
+        else {
+            ListNode<T>* new_element = new ListNode<T>{t, it.node->prev, it.node};
+
+            it.node->prev->next = new_element;
+            it.node->prev = new_element;
+            size_++;
+            
+            return ListIterator<T>{new_element};
+        }
+    }
 
     /* ... */
     //TODO: member function insert (Aufgabe 3.14)
