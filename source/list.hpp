@@ -90,7 +90,7 @@ struct ListIterator {
   }
 
 
-  /* ... */
+  /* checks if to iterators are equal */
   bool operator==(ListIterator<T> const& x) const {
     //TODO: Implement Equality-Operation for Iterator
     //      (Aufgabe 3.12 - Teil 5)
@@ -98,7 +98,7 @@ struct ListIterator {
     return node == x.node;
   } // call it: == it
 
-  /* ... */
+  /* checks if to iterators are unequal */
   bool operator!=(ListIterator<T> const& x) const {
     //TODO: Implement Inequality-Operation for Iterator  
     //      (Aufgabe 3.12 - Teil 6)
@@ -266,10 +266,10 @@ class List {
     }
 
 
-    /* ... */
+    /* inserts an element in the list in front of the given iterator */
     //TODO: member function insert (Aufgabe 3.13)
     ListIterator<T> insert(T t, ListIterator<T>& it) {
-        if (it.node == nullptr) {
+        if (it.node == nullptr && it != end()) {
             throw "iterator does not point to valid node";
         }
         else if (it == begin()) {
@@ -290,9 +290,6 @@ class List {
             return ListIterator<T>{new_element};
         }
     }
-
-    /* ... */
-    //TODO: member function insert (Aufgabe 3.14)
 
     /* reverses the order of the elements in the list */
     //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
@@ -476,8 +473,6 @@ List<T> reverse(List<T> const& l) {
     list.reverse();
     return list;
 }
-/* ... */
-//TODO: Freie Funktion operator+ (3.10 - Teil 2)
 
 
 #endif // # define BUW_LIST_HPP

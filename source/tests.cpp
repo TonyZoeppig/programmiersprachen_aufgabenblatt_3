@@ -237,6 +237,16 @@ TEST_CASE("insert function", "list") {
     REQUIRE(inserted_element.node->prev == prev_element.node);
     REQUIRE(inserted_element.node->next == it.node);
     REQUIRE(it.node->prev == inserted_element.node);
+
+    List<char> char_list;
+    char_list.push_back('b');
+    ListIterator<char> it2 = char_list.begin();
+    ListIterator<char> inserted_element2 = char_list.insert('a', it2);
+
+    REQUIRE(char_list.size() == 2);
+    REQUIRE(inserted_element2.node->prev == nullptr);
+    REQUIRE(inserted_element2.node->next == it2.node);
+    REQUIRE(it2.node->prev == inserted_element2.node);
 }
 
 //test cases for element access of list
